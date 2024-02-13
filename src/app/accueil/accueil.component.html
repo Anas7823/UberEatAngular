@@ -1,0 +1,108 @@
+<!-- Image and text -->
+<nav class="base-nav navbar navbar-light bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img
+        src="../../assets/img/logo.jpg"
+        class="me-2"
+        height="70"
+        alt="UberEat Logo"
+        loading="lazy"
+      />
+      <h3>UberEat</h3>
+    </a>
+    <ul class="navbar-nav">
+      <!-- Badge -->
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span class="badge badge-pill bg-danger">{{ calculerNombreTotalArticles() }}</span>
+          <span><i class="fas fa-shopping-cart"></i></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- NavHamburger for phone -->
+<nav class="navbar navbar-light bg-body-tertiary mobile-nav">
+  <div class="nav-hamburger">
+    <button class="btn btn-primary nav-hamburger-button" aria-expanded="false" (click) = "openNavMobile()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <a class="nav-link" href="#">
+      <span class="badge badge-pill bg-danger">{{ calculerNombreTotalArticles() }}</span>
+      <span><i class="fas fa-shopping-cart"></i></span>
+    </a>
+  </div>
+  <div class="nav-hamburger-menu" id="nav-hamburger-menu">
+    <ul>
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#plats">Plâts</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container accueil">
+  <div class="article">
+    <div class="titre">
+      <h3 id="plats">Nos plâts</h3>
+    </div>
+    <div class="plats">
+      <div class="card" *ngFor= "let plat of plats">
+        <div class="bg-image hover-overlay" mdbRipple rippleColor="light">
+          <img [src]="'../../assets/img/' + plat.image" class="img-fluid"/>
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{plat.nom}}</h5>
+          <p class="card-text" style="height: 40px;">{{plat.description}}</p>
+          <p class="card-text"><b>{{plat.prix}} €</b></p>
+          <button class="btn btn-dark" (click)="ajouterAuPanier(plat)">Ajouter !</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="panier">
+    <h3>Mon panier</h3>
+    <div class="liste-articles">
+      <table>
+        <tr>
+          <th>Article</th>
+          <th>Prix</th>
+          <th>Quantité</th>
+          <th>Total</th>
+        </tr>
+        <tr *ngFor="let article of panier">
+          <td>{{ article.nom }}</td>
+          <td>{{ article.prix }}</td>
+          <td>{{ article.quantite }}</td>
+          <td>{{ article.prix * article.quantite }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="total">
+      <h4>Total : {{ calculerTotal() }}</h4>
+      <button class="btn btn-success" (click)="validerPanier()">Acheter</button>
+    </div>
+  </div>
+</div>
+
+
+<footer id="footer">
+  <div class="row">
+    <div class="col-md-8">
+      <h5>UberEat</h5>
+      <img src="../../assets/img/logo.jpg" height="70" alt="UberEat Logo" loading="lazy" />
+    </div>
+    <div class="col-md-4">
+      <h5>Contact</h5>
+      <p>Adresse : 123 rue de la paix, Paris</p>
+      <p>Téléphone : 01 02 03 04 05</p>
+    </div>
+  </div>
+</footer>

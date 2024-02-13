@@ -1,1 +1,111 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('variables.scss');
+
+body{
+  color: whitesmoke;
+  overflow-x: hidden;
+  .accueil{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    /* From https://css.glass */
+    background: rgba(0, 65, 21, 0.42);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.3px);
+    -webkit-backdrop-filter: blur(5.3px);
+    border: 1px solid rgba(0, 65, 21, 0.3);
+    .article{
+      height: fit-content;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+
+      .plats{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        .card{
+          max-width: 15rem;
+          margin: 0.6rem;
+        }
+      }
+    }
+    .panier{
+      min-height: 80vh;
+      max-height: fit-content;
+      width: 50%;
+      padding: 20px;
+      .liste-articles{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        ul{
+          li{
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  footer{
+    padding: 20px;
+    border-top: 1px solid white;
+    background: rgba(0, 65, 21, 0.42);
+  }
+
+  .mobile-nav{
+    display: none;
+  }
+}
+
+
+// responsive
+
+@media (max-width: 800px){
+  .base-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: block !important;
+  }
+  .nav-hamburger{
+    display: flex;
+    justify-content:space-between;
+    padding: 5px;
+    color: black;
+  }
+  /* Ajoutez cette classe CSS pour masquer initialement le menu */
+  .nav-hamburger-menu {
+    display: none !important;
+  }
+
+  /* Ajoutez cette classe CSS pour afficher le menu lorsque la classe 'show' est présente */
+  .show {
+    display: block !important;
+  }
+  .accueil{
+    flex-direction: column-reverse;
+
+    .article{
+      width: 100% !important;
+      .plats{
+        width: 100% !important;
+        .card{
+          width: 100% !important;
+        }
+      }
+    }
+    .panier{
+      min-height: 20svh !important;
+      max-height: fit-content !important;
+      width: 100% !important;
+    }
+  }
+}
